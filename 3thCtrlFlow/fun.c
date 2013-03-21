@@ -69,3 +69,52 @@ void shellsort(int v[], int n)
     }
         printf("shellsort\n");
 }
+
+void reverse(char s[])
+{
+    int c = 0;
+    int i = 0;
+    int j = 0;
+    for(i = 0,j = strlen(s) - 1; i < j; i++,j--)
+    {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+    }
+}
+
+/*itoa: convert n to characters in s*/
+void itoa(int n, char s[])
+{
+    int i = 0;
+    int sign = 0;
+    if((sign = n) < 0)
+    {
+        n = -n;
+    }
+    i = 0;
+    do
+    {
+        s[i++] = n % 10 + '0';
+    }while((n /= 10) > 0);
+    
+    if(sign < 0)
+    {
+        s[i++] = '-';
+    }
+    s[i] = '\0';
+    reverse(s);
+}
+
+/*trim: remove trailing blanks, tabs, newlines*/
+int trim(char s[])
+{
+    int n = 0;
+    for(n = strlen(s) - 1; n >= 0; n--)
+    {
+        if(s[n] != ' ' && s[n] != '\t' && s[n] != "\n")
+        break;
+    }
+    s[n+1] = '\0';
+    return n;
+}
